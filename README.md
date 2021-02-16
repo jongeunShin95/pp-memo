@@ -8,7 +8,8 @@ Reducer를 임시저장소로 사용해서 만들기
 * 일단 메모 컴포넌트를 누르면 alert띄우기<br />
 * 메모 컴포넌트와 리스트 컴포넌트 스타일링 (조금 더 수정해야함.)<br />
 
-<center>
+<div align=center>
+
 
 | 컴포넌트 이름 | 내용 |
 |---|:---:|
@@ -16,4 +17,5 @@ Reducer를 임시저장소로 사용해서 만들기
 | `MemoList` | MemoButton 렌더링 |
 | `MemoButton` | 메모창 띄우는 버튼 |
 
-</center>
+
+</div>
