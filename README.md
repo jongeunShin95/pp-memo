@@ -43,4 +43,3 @@ type Memo = {
 │  └─MemoList(props: { memos: Memos })
 │       └─MemoButton(props: { id, title, description }: Memo)
 ```
-
