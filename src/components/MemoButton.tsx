@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GrDatabase } from 'react-icons/gr';
+import { Memo } from '../App';
 
 const StyledButton = styled.button`
     display: inline-flex;
@@ -24,12 +25,12 @@ const StyledButton = styled.button`
 
 `;
 
-function onOpenMemo() {
-    alert("test");
+function onOpenMemo(id: number, title: string, description: string) {
+    console.log(id + " " + title + " " + description);
 }
 
-const MemoButton = () => (
-    <StyledButton onClick={onOpenMemo}>
+const MemoButton = ({ id, title, description }: Memo) => (
+    <StyledButton onClick={() => onOpenMemo(id, title, description)}>
         <GrDatabase />
     </StyledButton>
 );
