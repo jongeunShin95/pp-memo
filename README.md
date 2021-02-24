@@ -20,7 +20,7 @@ Reducer를 임시저장소로 사용해서 만들기
 
 # &#10004; 0220
 * Memo 타입과 Memo를 담는 배열인 Memos 타입을 만들어 메모에 사용되는 객체들을 useState으로 관리(나중에 useReducer로 바꿀꺼임)<br />
-* MemoButton을을 누르게 되면 Memo에 들어있는 id, title, description을 콘솔에 출력하도록 함.<br />
+* MemoButton을 누르게 되면 Memo에 들어있는 id, title, description을 콘솔에 출력하도록 함.<br />
 * MemoButton을 생성하는 버튼을 만들었음.(AddMemoButton 컴포넌트)<br />
 * 메모리스트는 App에서 받아오는 Memo 수 만큼 MemoButton을 생성함.<br /><br />
 
@@ -42,4 +42,28 @@ type Memo = {
 │  ├─AddMemoButton
 │  └─MemoList(props: { memos: Memos })
 │       └─MemoButton(props: { id, title, description }: Memo)
+```
+
+# &#10004; 0224
+* MemoButton을 누르면 모달형식으로 메모 내용을 띄워줌. 현재는 input 태그로 내용을 출력하기만 하는데 나중에 수정할 수 있도록 할 것임.
+
+<div align=center>
+
+| 컴포넌트 이름 | 내용 |
+|---|:---:|
+| `App` | MemoList 렌더링 |
+| `AddMemoButton` | MemoButton 추가하는 버튼 |
+| `MemoList` | MemoButton 렌더링 |
+| `MemoButton` | 메모창 띄우는 버튼 |
+| `MemoContent` | 메모 내용(모달 형식) |
+
+</div>
+
+### 컴포넌트 구조
+```sh
+├─App(memos: Memos)
+│  ├─AddMemoButton
+│  └─MemoList(props: { memos: Memos })
+│       └─MemoButton(props: { id, title, description }: Memo)
+│            └─MemoContent(props: { visible: boolean }, { id, title, description }: Memo)
 ```

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { GrDatabase } from 'react-icons/gr';
 import { Memo } from '../App';
+import MemoContent from './MemoContent';
 
 const StyledButton = styled.button`
     display: inline-flex;
@@ -25,14 +26,25 @@ const StyledButton = styled.button`
 
 `;
 
-function onOpenMemo(id: number, title: string, description: string) {
-    console.log(id + " " + title + " " + description);
-}
+const MemoButton = ({ id, title, description }: Memo) => {
+    const [visible, setVisible] = useState<boolean>(false);
 
-const MemoButton = ({ id, title, description }: Memo) => (
-    <StyledButton onClick={() => onOpenMemo(id, title, description)}>
-        <GrDatabase />
-    </StyledButton>
-);
+    function onOpenMemo() {
+        setVisible(true);
+    }
+
+    function onCloseMemo() {
+        setVisible(false);
+    }
+
+    return (
+        <>
+            <StyledButton onClick={() => onOpenMemo()}>
+                <GrDatabase />
+            </StyledButton>
+            <MemoContent visible={visible} id={id} title={title} description={description} onCloseMemo={onCloseMemo} />
+        </>
+    );
+};
 
 export default MemoButton;
