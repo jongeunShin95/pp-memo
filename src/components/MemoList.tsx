@@ -12,16 +12,21 @@ const StyledMemoList = styled.div`
     margin-top: 100px;
 `;
 
+type PropsType = {
+    memos: Memos;
+    modifyMemo: ( id: number, name: string, value: string ) => void;
+}
 
-const MemoList = (props: { memos: Memos }) => (
+const MemoList = ({ memos, modifyMemo }: PropsType) => (
     <StyledMemoList>
         {
-            props.memos.map((memo: Memo) => (
+            memos.map((memo: Memo) => (
                 <MemoButton
                     key={memo.id}
                     id={memo.id}
                     title={memo.title}
                     description={memo.description}
+                    modifyMemo={modifyMemo}
                 />
             ))
         }

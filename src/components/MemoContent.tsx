@@ -42,14 +42,21 @@ const CancelButton = styled.div`
 `;
 
 type PropsType = {
-    visible: boolean,
-    id: number,
-    title: string,
-    description: string,
-    onCloseMemo: () => void
+    visible: boolean;
+    id: number;
+    title: string;
+    description: string;
+    onCloseMemo: () => void;
+    modifyMemo: (id: number, name: string, value: string) => void;
 };
 
-const MemoContent = ({ visible, id, title, description, onCloseMemo }: PropsType) => {
+const MemoContent = ({ visible, id, title, description, onCloseMemo, modifyMemo }: PropsType) => {
+
+    const onHandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        modifyMemo(id, name, value);
+    }
+
     if (!visible) return null;
     return (
         <DarkBackground>
@@ -58,9 +65,9 @@ const MemoContent = ({ visible, id, title, description, onCloseMemo }: PropsType
                     <GrFormClose />
                 </CancelButton>
                 <h3>제목</h3>
-                <input value={title} />
+                <input name="title" value={title} onChange={onHandleChange} />
                 <h3>내용</h3>
-                <input value={description} />
+                <input name="description" value={description} onChange={onHandleChange} />
             </ContentBlock>
         </DarkBackground>
     )

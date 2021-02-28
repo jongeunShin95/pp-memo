@@ -67,3 +67,11 @@ type Memo = {
 │       └─MemoButton(props: { id, title, description }: Memo)
 │            └─MemoContent(props: { visible: boolean }, { id, title, description }: Memo)
 ```
+
+
+# &#10004; 0228
+* 현재 useState로 메모 내용들이 저장되어 있고 해당 내용을 수정할 수 있게 했음.
+* 그리고 새로운 useState 변수인 nextId를 통해 각 메모의 고유값을 할당해줌.
+* modifyMemo를 통해 메모 모달에서 해당 내용을 수정하면 바로바로 setMemo로 업데이트를 해주는 방식임.
+
+![0228](https://user-images.githubusercontent.com/20867824/109421880-868d1d00-7a1c-11eb-962a-489ef4ab7d70.gif)

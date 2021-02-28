@@ -39,6 +39,7 @@ export type Memo = {
 };
 
 const App = () => {
+  const [nextId, setNextId] = useState<number>(3);
   const [memos, setMemo] = useState<Memos>([
     {
       id: 1,
@@ -53,14 +54,22 @@ const App = () => {
   ] as Memos);
 
   const addMemo = () => {
-    const newMemos: Memos = [...memos, { id: 3, title: "TITLE3", description: "DESCRIPTION" }];
+    const newMemos: Memos = [...memos, { id: nextId, title: `TITLE${nextId}`, description: `DESCRIPTION${nextId}` }];
+    setMemo(newMemos);
+    setNextId(nextId + 1);
+  }
+
+  const modifyMemo = (id: number, name: string, value: string) => {
+    const newMemos: Memos = memos.map((memo: Memo) => 
+      memo.id === id ? { ...memo, [name]: value } : memo
+    );
     setMemo(newMemos);
   }
 
   return(
     <>
       <GlobalStyle />
-      <MemoList memos={memos} />
+      <MemoList memos={memos} modifyMemo={modifyMemo} />
       <AddMemoButton onClick={addMemo}>
             <GrAddCircle />
       </AddMemoButton>

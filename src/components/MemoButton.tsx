@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { GrDatabase } from 'react-icons/gr';
-import { Memo } from '../App';
 import MemoContent from './MemoContent';
 
 const StyledButton = styled.button`
@@ -26,7 +25,14 @@ const StyledButton = styled.button`
 
 `;
 
-const MemoButton = ({ id, title, description }: Memo) => {
+type PropsType = {
+    id: number;
+    title: string;
+    description: string;
+    modifyMemo: ( id: number, name: string, value: string ) => void;
+}
+
+const MemoButton = ({ id, title, description, modifyMemo }: PropsType) => {
     const [visible, setVisible] = useState<boolean>(false);
 
     function onOpenMemo() {
@@ -42,7 +48,7 @@ const MemoButton = ({ id, title, description }: Memo) => {
             <StyledButton onClick={() => onOpenMemo()}>
                 <GrDatabase />
             </StyledButton>
-            <MemoContent visible={visible} id={id} title={title} description={description} onCloseMemo={onCloseMemo} />
+            <MemoContent visible={visible} id={id} title={title} description={description} onCloseMemo={onCloseMemo} modifyMemo={modifyMemo} />
         </>
     );
 };
