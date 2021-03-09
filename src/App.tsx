@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import MemoList from './components/MemoList';
 import { GrAddCircle } from 'react-icons/gr';
+import { useMemoDispatch, useMemoNextId } from './MemoContext';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -39,37 +40,18 @@ export type Memo = {
 };
 
 const App = () => {
-  const [nextId, setNextId] = useState<number>(3);
-  const [memos, setMemo] = useState<Memos>([
-    {
-      id: 1,
-      title: 'TITLE1',
-      description: "DESCRIPTION1"
-    },
-    {
-      id: 2,
-      title: 'TITLE2',
-      description: "DESCRIPTION2"
-    },
-  ] as Memos);
+  const dispatch = useMemoDispatch();
+  const nextId = useMemoNextId();
 
   const addMemo = () => {
-    const newMemos: Memos = [...memos, { id: nextId, title: `TITLE${nextId}`, description: `DESCRIPTION${nextId}` }];
-    setMemo(newMemos);
-    setNextId(nextId + 1);
-  }
-
-  const modifyMemo = (id: number, name: string, value: string) => {
-    const newMemos: Memos = memos.map((memo: Memo) => 
-      memo.id === id ? { ...memo, [name]: value } : memo
-    );
-    setMemo(newMemos);
+    dispatch({ type: 'ADD_MEMO', id: nextId.current });
+    nextId.current += 1;
   }
 
   return(
     <>
       <GlobalStyle />
-      <MemoList memos={memos} modifyMemo={modifyMemo} />
+      <MemoList />
       <AddMemoButton onClick={addMemo}>
             <GrAddCircle />
       </AddMemoButton>

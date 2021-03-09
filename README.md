@@ -75,3 +75,30 @@ type Memo = {
 * modifyMemo를 통해 메모 모달에서 해당 내용을 수정하면 바로바로 setMemo로 업데이트를 해주는 방식임.
 
 ![0228](https://user-images.githubusercontent.com/20867824/109421880-868d1d00-7a1c-11eb-962a-489ef4ab7d70.gif)
+
+# &#10004; 0309 (완료)
+* useState를 사용한 Memos 객체들을 reducer로 관리하게 바꿈.
+* 최종적으로 마무리 했음.
+
+<div align=center>
+
+| 컴포넌트 이름 | 내용 |
+|---|:---:|
+| `App` | MemoList 렌더링 |
+| `AddMemoButton` | MemoButton 추가하는 버튼 |
+| `MemoList` | MemoButton 렌더링 |
+| `MemoButton` | 메모창 띄우는 버튼 |
+| `MemoContent` | 메모 내용(모달 형식) |
+| `MemoContext` | 메모 객체 관리 |
+
+</div>
+
+### 컴포넌트 구조
+```sh
+├─App(memos: Memos)
+│  ├─AddMemoButton
+│  └─MemoList()
+│       └─MemoButton(props: { id, title, description }: Memo)
+│            └─MemoContent(props: { visible: boolean }, { id, title, description }: Memo)
+└─MemoContext()
+```

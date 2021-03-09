@@ -1,7 +1,8 @@
 import React from 'react';
 import MemoButton from './MemoButton';
 import styled from 'styled-components';
-import { Memo, Memos } from '../App';
+import { Memo } from '../App';
+import { useMemoState } from '../MemoContext';
 
 const StyledMemoList = styled.div`
     height: 768px;
@@ -12,12 +13,9 @@ const StyledMemoList = styled.div`
     margin-top: 100px;
 `;
 
-type PropsType = {
-    memos: Memos;
-    modifyMemo: ( id: number, name: string, value: string ) => void;
-}
-
-const MemoList = ({ memos, modifyMemo }: PropsType) => (
+const MemoList = () => {
+    const memos = useMemoState();
+    return (
     <StyledMemoList>
         {
             memos.map((memo: Memo) => (
@@ -26,11 +24,10 @@ const MemoList = ({ memos, modifyMemo }: PropsType) => (
                     id={memo.id}
                     title={memo.title}
                     description={memo.description}
-                    modifyMemo={modifyMemo}
                 />
             ))
         }
-    </StyledMemoList>
-);
+    </StyledMemoList>)
+};
 
 export default MemoList;

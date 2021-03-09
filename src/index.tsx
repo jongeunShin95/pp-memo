@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { MemoProvider } from './MemoContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MemoProvider>
+      <App />
+    </MemoProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

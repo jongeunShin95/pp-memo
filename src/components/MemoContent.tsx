@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GrFormClose } from "react-icons/gr";
+import { useMemoDispatch } from '../MemoContext';
 
 const DarkBackground = styled.div`
     position: fixed;
@@ -47,14 +48,15 @@ type PropsType = {
     title: string;
     description: string;
     onCloseMemo: () => void;
-    modifyMemo: (id: number, name: string, value: string) => void;
 };
 
-const MemoContent = ({ visible, id, title, description, onCloseMemo, modifyMemo }: PropsType) => {
+const MemoContent = ({ visible, id, title, description, onCloseMemo }: PropsType) => {
+
+    const dispatch = useMemoDispatch();
 
     const onHandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        modifyMemo(id, name, value);
+        dispatch({ type: 'MODIFY_MEMO', id, name, value });
     }
 
     if (!visible) return null;
@@ -70,7 +72,7 @@ const MemoContent = ({ visible, id, title, description, onCloseMemo, modifyMemo 
                 <input name="description" value={description} onChange={onHandleChange} />
             </ContentBlock>
         </DarkBackground>
-    )
+    );
 }
 
 export default MemoContent;

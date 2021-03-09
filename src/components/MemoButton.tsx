@@ -29,10 +29,9 @@ type PropsType = {
     id: number;
     title: string;
     description: string;
-    modifyMemo: ( id: number, name: string, value: string ) => void;
 }
 
-const MemoButton = ({ id, title, description, modifyMemo }: PropsType) => {
+const MemoButton = ({ id, title, description }: PropsType) => {
     const [visible, setVisible] = useState<boolean>(false);
 
     function onOpenMemo() {
@@ -48,7 +47,7 @@ const MemoButton = ({ id, title, description, modifyMemo }: PropsType) => {
             <StyledButton onClick={() => onOpenMemo()}>
                 <GrDatabase />
             </StyledButton>
-            <MemoContent visible={visible} id={id} title={title} description={description} onCloseMemo={onCloseMemo} modifyMemo={modifyMemo} />
+            <MemoContent visible={visible} id={id} title={title} description={description} onCloseMemo={onCloseMemo} />
         </>
     );
 };
